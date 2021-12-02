@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnyMarket</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/spectre.css/dist/spectre.min.css"
+    />
+  </head>
+  <body class="container pt-2">
+    <div class="columns">
+      <div class="col-6 col-mx-auto">
+        <h2 class="text-center">CSV Rest Client</h2>
+        <blockquote>
+          <p>
+            Converte um arquivo csv para <mark>JSON</mark> e envia para a
+            <mark>API</mark> Rest especificado na URL
+          </p>
+        </blockquote>
+        <form id="form">
+          <div class="form-group">
+            <label class="form-label" for="url">URL</label>
+            <input
+              id="url"
+              class="form-input"
+              type="text"
+              value="http://localhost:3000/posts/%{id}"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="method">Método HTTP</label>
+            <select id="method" class="form-select" required>
+              <option>get</option>
+              <option selected>post</option>
+              <option>put</option>
+              <option>patch</option>
+              <option>delete</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="token">API Token</label>
+            <input id="token" class="form-input" type="text" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="file">Arquivo</label>
+            <input
+              id="file"
+              class="form-input"
+              type="file"
+              accept=".csv"
+              required
+            />
+          </div>
+          <div class="text-right mb-2">
+            <button
+              id="submit"
+              type="submit"
+              class="btn btn-primary input-group-btn"
+            >
+              Enviar
+            </button>
+          </div>
+          <span id="info" class="label mt-2"></span>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"
+      integrity="sha512-EbdJQSugx0nVWrtyK3JdQQ/03mS3Q1UiAhRtErbwl1YL/+e2hZdlIcSURxxh7WXHTzn83sjlh2rysACoJGfb6g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+      integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      function start() {
+        document.getElementById("submit").setAttribute("disabled", "disabled");
+        const info = document.getElementById("info");
+        info.classList.remove("label-success");
+      }
+
+      function complete() {
+        document.getElementById("submit").removeAttribute("disabled");
+        const info = document.getElementById("info");
+        info.innerHTML = "Enviado com sucesso!";
+        info.classList.add("label-success");
+      }
+
+      function error() {
+        const info = document.getElementById("info");
+        info.classList.add("label-error");
+        info.innerHTML =
+          "Ocorreu um erro ao enviar, recarregue a página e tente novamente";
+      }
+
+      function updateProgress(progress) {
+        document.getElementById(
+          "info"
+        ).innerHTML = `Registros enviados: ${progress}`;
+      }
+
+      function run({ url, method, file, headers }) {
+        start();
+        let progress = 0;
+        const results = [];
+
+        async function send(data) {
+          const replaceUrl = ["put", "patch", "delete"].includes(method);
+          const sendUrl = replaceUrl ? url.replace("%{id}", data.id) : url;
+          return axios[method](sendUrl, data, { headers }).then((res) => {
+            progress++;
+            updateProgress(progress);
+            return res;
+          });
+        }
+
+        function readFile() {
+          Papa.parse(file, {
+            worker: true,
+            header: true,
+            dynamicTyping: true,
+            step: function ({ data }) {
+              results.push(send(data));
+            },
+            complete: function () {
+              Promise.all(results)
+                .then(() => {
+                  complete();
+                })
+                .catch((e) => {
+                  error();
+                });
+            },
+          });
+        }
+        readFile();
+      }
+
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const url = document.getElementById("url").value;
+          const token = document.getElementById("token").value;
+          const method = document.getElementById("method").value;
+          const file = document.getElementById("file").files[0];
+          const options = {
+            url,
+            method,
+            file,
+            headers: { gumgaToken: token },
+          };
+          run(options);
+        });
+    </script>
+  </body>
+</html>
