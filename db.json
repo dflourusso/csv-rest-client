@@ -1,19 +1,28 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 2,
+      "title": "Apple",
+      "author": {
+        "id": 3,
+        "name": "Daniel"
+      }
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 3,
+      "title": "Lemon",
+      "author": {
+        "id": 4,
+        "name": "Fernando"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Strawberry",
+      "author": {
+        "id": 5,
+        "name": "Jefferson"
+      }
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

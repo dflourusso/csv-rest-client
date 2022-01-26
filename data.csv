@@ -1,4 +1,4 @@
-id;title;author
-2;Apple;AAAAA
-3;Lemon;BBBB
-4;Strawberry;CCCC
+id;title;author.id;author.name
+2;Apple;3;Daniel
+3;Lemon;4;Fernando
+4;Strawberry;5;Jefferson
