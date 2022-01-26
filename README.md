@@ -25,9 +25,9 @@ Exemplo de mapeamento:
 {
   "id": "id",
   "title": "title",
-  "author": {
-    "id": "author.id",
-    "name": "author.name"
+  "category": {
+    "id": "category.id",
+    "title": "category.title"
   }
 }
 ```
@@ -35,10 +35,10 @@ Exemplo de mapeamento:
 Exemplo de csv:
 
 ```csv
-id;title;author.id;author.name
-2;Apple;3;Daniel
-3;Lemon;4;Fernando
-4;Strawberry;5;Jefferson
+id;title;category.id;category.title
+2;Keyboard;3;Computador
+3;Lemon;4;Fruta
+4;Strawberry;5;Fruta
 ```
 
 Exemplo de uma linha dos dados mapeada:
@@ -46,10 +46,10 @@ Exemplo de uma linha dos dados mapeada:
 ```json
 {
   "id": 2,
-  "title": "Apple",
-  "author": {
+  "title": "Keyboard",
+  "category": {
     "id": 3,
-    "name": "Daniel"
+    "name": "Computador"
   }
 }
 ```
