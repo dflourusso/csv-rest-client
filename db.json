@@ -1,27 +1,27 @@
 {
-  "posts": [
+  "products": [
     {
       "id": 2,
       "title": "Apple",
-      "author": {
-        "id": 3,
-        "name": "Daniel"
+      "category": {
+        "id": "3",
+        "title": "Fruit"
       }
     },
     {
       "id": 3,
-      "title": "Lemon",
-      "author": {
-        "id": 4,
-        "name": "Fernando"
+      "title": "Keyboard",
+      "category": {
+        "id": "4",
+        "title": "Hardware"
       }
     },
     {
       "id": 4,
-      "title": "Strawberry",
-      "author": {
-        "id": 5,
-        "name": "Jefferson"
+      "title": "Orange",
+      "category": {
+        "id": "5",
+        "title": "Fruit"
       }
     }
   ]

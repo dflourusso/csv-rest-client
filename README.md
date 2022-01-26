@@ -1,5 +1,13 @@
 # csv-rest-client
 
+## Como executar?
+
+1. Coloque o arquivo csv no diretório deste projeto
+2. Ajusta as variáveis do arquivo config.json
+3. execute na linha de comando: `node index.js`
+
+## Informações complementares
+
 ### URL
 
 É a URL da api que você está tentando enviar um arquivo
@@ -49,7 +57,7 @@ Exemplo de uma linha dos dados mapeada:
   "title": "Keyboard",
   "category": {
     "id": 3,
-    "name": "Computador"
+    "title": "Computador"
   }
 }
 ```

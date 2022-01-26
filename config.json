@@ -1,8 +1,17 @@
 {
-  "url": "http://localhost:3000/posts/%{id}",
+  "url": "http://localhost:3000/products/%{id}",
   "method": "put",
   "filePath": "data.csv",
   "headers": {
     "gumgaToken": ""
+  },
+  "mapping": {
+    "id": "id",
+    "title": "title",
+    "category": {
+      "id": "category.id",
+      "title": "category.title",
+      "path": "category.path"
+    }
   }
 }

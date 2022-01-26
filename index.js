@@ -3,13 +3,28 @@ const fs = require("fs");
 const axios = require("axios").default;
 const config = require("./config");
 
-function run({ url, method, filePath, headers }) {
+function mapData(data, mapping) {
+  return Object.keys(mapping).reduce((response, key) => {
+    if (mapping[key] instanceof Object) {
+      return {
+        ...response,
+        [key]: mapData(data, mapping[key])
+      };
+    } else {
+      return {...response, [key]: data[mapping[key]]};
+    }
+  }, {})
+}
+
+function run({ url, method, mapping, filePath, headers }) {
   const results = [];
 
   async function send(data) {
+    const mappedData = mapData(data, mapping)
+    console.log(mappedData)
     const replaceUrl = ["put", "patch", "delete"].includes(method);
     const sendUrl = replaceUrl ? url.replace("%{id}", data.id) : url;
-    return axios[method](sendUrl, data, { headers }).then((res) => {
+    return axios[method](sendUrl, mappedData, { headers }).then((res) => {
       process.stdout.write(".");
       return res;
     });

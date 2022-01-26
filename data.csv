@@ -1,4 +1,4 @@
-id;title;author.id;author.name
-2;Apple;3;Daniel
-3;Lemon;4;Fernando
-4;Strawberry;5;Jefferson
+id;title;category.id;category.title
+2;Apple;3;Fruit
+3;Keyboard;4;Hardware
+4;Orange;5;Fruit
