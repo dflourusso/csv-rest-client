@@ -5,7 +5,12 @@ const config = require(`./${process.argv[2] || 'config'}`);
 
 function mapData(data, mapping) {
   return Object.keys(mapping).reduce((response, key) => {
-    if (mapping[key] instanceof Object) {
+    if (Array.isArray(mapping[key])) {
+      return {
+        ...response,
+        [key]: mapping[key].map((p) => mapData(data, p))
+      }
+    } else if (mapping[key] instanceof Object) {
       return {
         ...response,
         [key]: mapData(data, mapping[key])

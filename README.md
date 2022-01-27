@@ -8,6 +8,8 @@
 4. Instale as dependências usando o comando `npm install`. (Necessário somente da primeira vez)
 5. Execute na linha de comando: `node index.js` ou com um config customizado `node index.js config-file-name`
 
+> Utilize os arquivos config.json e data.csv como exemplos
+
 ## Informações complementares
 
 ### URL

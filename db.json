@@ -6,7 +6,15 @@
       "category": {
         "id": "3",
         "title": "Fruit"
-      }
+      },
+      "tags": [
+        {
+          "name": "tag1"
+        },
+        {
+          "name": "another-tag1"
+        }
+      ]
     },
     {
       "id": 3,
@@ -14,7 +22,15 @@
       "category": {
         "id": "4",
         "title": "Hardware"
-      }
+      },
+      "tags": [
+        {
+          "name": "tag2"
+        },
+        {
+          "name": "another-tag1"
+        }
+      ]
     },
     {
       "id": 4,
@@ -22,7 +38,15 @@
       "category": {
         "id": "5",
         "title": "Fruit"
-      }
+      },
+      "tags": [
+        {
+          "name": "tag3"
+        },
+        {
+          "name": "another-tag1"
+        }
+      ]
     }
   ]
 }

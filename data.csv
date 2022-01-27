@@ -1,4 +1,4 @@
-id;title;category.id;category.title
-2;Apple;3;Fruit
-3;Keyboard;4;Hardware
-4;Orange;5;Fruit
+id;title;category.id;category.title;tags.0.name;tags.1.name
+2;Apple;3;Fruit;tag1;another-tag1
+3;Keyboard;4;Hardware;tag2;another-tag1
+4;Orange;5;Fruit;tag3;another-tag1
