@@ -4,6 +4,9 @@ const axios = require("axios").default;
 const config = require(`./${process.argv[2] || 'config'}`);
 
 function mapData(data, mapping) {
+  if (Array.isArray(mapping)) {
+    return mapping.map((p) => mapData(data, p))
+  };
   return Object.keys(mapping).reduce((response, key) => {
     if (Array.isArray(mapping[key])) {
       return {
