@@ -48,7 +48,7 @@ function run({ url, method, mapping, filePath, headers }) {
           console.timeEnd("Duração");
         })
         .catch((e) => {
-          console.log(e);
+          console.log(e.response.data);
         });
     });
 }
