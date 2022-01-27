@@ -3,10 +3,10 @@
 ## Como executar?
 
 1. Coloque o arquivo csv no diretório deste projeto
-2. Ajuste as variáveis do arquivo config.json
+2. Ajuste as variáveis do arquivo de configuração `config.json` ou qualquer outo nome que quiser. Se for outro nome, pode ser passado na hora de executar o `index.js`
 3. Abra o terminal na pasta que está o projeto
-4. Instale as dependências usando o comando `npm install`
-5. Execute na linha de comando: `node index.js`
+4. Instale as dependências usando o comando `npm install`. (Necessário somente da primeira vez)
+5. Execute na linha de comando: `node index.js` ou com um config customizado `node index.js config-file-name`
 
 ## Informações complementares
 

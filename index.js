@@ -1,7 +1,7 @@
 const csv = require("csv-parser");
 const fs = require("fs");
 const axios = require("axios").default;
-const config = require("./config");
+const config = require(`./${process.argv[2] || 'config'}`);
 
 function mapData(data, mapping) {
   return Object.keys(mapping).reduce((response, key) => {
@@ -21,7 +21,6 @@ function run({ url, method, mapping, filePath, headers }) {
 
   async function send(data) {
     const mappedData = mapData(data, mapping)
-    console.log(mappedData)
     const replaceUrl = ["put", "patch", "delete"].includes(method);
     const sendUrl = replaceUrl ? url.replace("%{id}", data.id) : url;
     return axios[method](sendUrl, mappedData, { headers }).then((res) => {
